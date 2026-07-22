@@ -1,0 +1,92 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "vispy.net",
+  "description": "База знаний vispy.net — подключение, настройка и решение проблем",
+  "colors": {
+    "primary": "#8b7fd4",
+    "light": "#c4bef0",
+    "dark": "#6f63b8"
+  },
+  "favicon": "/favicon.ico",
+  "logo": {
+    "light": "/images/logo-wordmark-light.png",
+    "dark": "/images/logo-wordmark-dark.png"
+  },
+  "icons": {
+    "library": "lucide"
+  },
+  "navigation": {
+    "groups": [
+      {
+        "group": "Начало работы",
+        "pages": [
+          "index",
+          "quickstart"
+        ]
+      },
+      {
+        "group": "Установка и подключение",
+        "pages": [
+          "installation/windows",
+          "installation/macos",
+          "installation/ios",
+          "installation/android",
+          "installation/linux",
+          "installation/android-tv",
+          "installation/apple-tv",
+          "installation/qr-code"
+        ]
+      },
+      {
+        "group": "Личный кабинет",
+        "pages": [
+          "account/dashboard",
+          "account/subscription-management",
+          "account/tariffs",
+          "account/trial",
+          "account/payment",
+          "account/devices-traffic",
+          "account/loyalty-statuses",
+          "account/referral-program",
+          "account/gifts",
+          "account/wheel-of-fortune",
+          "account/support-tickets",
+          "account/profile-settings"
+        ]
+      },
+      {
+        "group": "Решение проблем",
+        "pages": [
+          "troubleshooting/connection-issues",
+          "troubleshooting/speed-and-servers",
+          "troubleshooting/subscription-update"
+        ]
+      },
+      {
+        "group": "Вопросы и ответы",
+        "pages": [
+          "faq"
+        ]
+      }
+    ]
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Личный кабинет",
+        "href": "https://web.vispy.net"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Сайт vispy.net",
+      "href": "https://vispy.net"
+    }
+  },
+  "footer": {
+    "socials": {
+      "telegram": "https://t.me/vispy_net"
+    }
+  }
+}
