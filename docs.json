@@ -23,7 +23,8 @@
         "pages": [
           "index",
           "quickstart"
-        ]
+        ],
+        "icon": "rocket"
       },
       {
         "group": "Установка и подключение",
@@ -36,7 +37,8 @@
           "installation/android-tv",
           "installation/apple-tv",
           "installation/qr-code"
-        ]
+        ],
+        "icon": "download"
       },
       {
         "group": "Личный кабинет",
@@ -53,7 +55,8 @@
           "account/wheel-of-fortune",
           "account/support-tickets",
           "account/profile-settings"
-        ]
+        ],
+        "icon": "layout-dashboard"
       },
       {
         "group": "Решение проблем",
@@ -61,13 +64,15 @@
           "troubleshooting/connection-issues",
           "troubleshooting/speed-and-servers",
           "troubleshooting/subscription-update"
-        ]
+        ],
+        "icon": "shield-check"
       },
       {
         "group": "Вопросы и ответы",
         "pages": [
           "faq"
-        ]
+        ],
+        "icon": "circle-question-mark"
       }
     ]
   },
