@@ -65,7 +65,7 @@
           "troubleshooting/speed-and-servers",
           "troubleshooting/subscription-update"
         ],
-        "icon": "shield-check"
+        "icon": "wrench"
       },
       {
         "group": "Вопросы и ответы",
