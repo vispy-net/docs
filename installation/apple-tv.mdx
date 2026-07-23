@@ -9,7 +9,7 @@ description: Установка и подключение vispy.net на Apple T
 
 <Steps>
   <Step title="Выберите приложение">
-    **INCY**, **Happ**.
+    **INCY** или **Happ**.
 
     <Warning>
       Может понадобиться сменить регион Apple ID на любой зарубежный.
@@ -18,8 +18,72 @@ description: Установка и подключение vispy.net на Apple T
   <Step title="Установите">
     App Store на самом Apple TV → установить → запустить → разрешить VPN-конфигурацию (пароль).
   </Step>
-  <Step title="Добавьте подписку">
-    «Добавить подписку» работает только если мастер открыт в браузере самого Apple TV — откройте мастер прямо там и нажмите кнопку.
+  <Step title="Добавьте подписку через QR-код">
+    Экраны на скриншотах ниже сняты с Android TV, но интерфейс INCY и Happ на Apple TV идентичен — принцип действий полностью совпадает.
+
+    <Tabs>
+      <Tab title="INCY">
+        <Steps>
+          <Step title="На телевизоре: разрешение и «Добавить»">
+            При первом запуске INCY попросит разрешение на фоновую работу — нажмите **«Разрешить»**. Затем нажмите **«+ Добавить»** в правом верхнем углу — откроется экран **«Отправить на TV»** с QR-кодом.
+
+            <Frame>
+              <img src="/images/installation/tv-setup/incy-tv-permission.jpg" alt="INCY на ТВ: запрос разрешения на фоновую активность" />
+            </Frame>
+
+            <Frame>
+              <img src="/images/installation/tv-setup/incy-tv-add-qr.jpg" alt="INCY на ТВ: экран «Отправить на TV» с QR-кодом" />
+            </Frame>
+          </Step>
+          <Step title="На телефоне: «Отправить на TV»">
+            Откройте INCY на телефоне, нажмите **⋮** (три точки) рядом с подпиской и выберите **«Отправить на TV»**.
+
+            <Frame>
+              <img src="/images/installation/tv-setup/incy-phone-menu.jpg" alt="INCY на телефоне: меню подписки с пунктом «Отправить на TV»" />
+            </Frame>
+          </Step>
+          <Step title="Сканируйте">
+            Наведите камеру телефона на QR-код на экране телевизора — подписка со всеми серверами появится в приложении на ТВ.
+
+            <Frame>
+              <img src="/images/installation/tv-setup/incy-tv-result.jpg" alt="INCY на ТВ: список серверов после добавления подписки" />
+            </Frame>
+          </Step>
+        </Steps>
+      </Tab>
+      <Tab title="Happ">
+        <Steps>
+          <Step title="На телевизоре: QR-код при первом запуске">
+            Happ сразу показывает экран **«Сканируйте через Happ на вашем телефоне»** с QR-кодом.
+
+            <Frame>
+              <img src="/images/installation/tv-setup/happ-tv-qr.jpg" alt="Happ на ТВ: экран сканирования QR-кода" />
+            </Frame>
+          </Step>
+          <Step title="На телефоне: «+» → «QR-код»">
+            Откройте Happ на телефоне, нажмите **«+»** в правом верхнем углу и выберите **«QR-код»**, затем наведите камеру на экран телевизора.
+
+            <Frame>
+              <img src="/images/installation/tv-setup/happ-phone-menu.jpg" alt="Happ на телефоне: меню добавления с пунктом «QR-код»" />
+            </Frame>
+          </Step>
+          <Step title="Выберите, что отправить">
+            После сканирования Happ покажет список серверов и подписок — отметьте нужные и нажмите **«Отправить»**.
+
+            <Frame>
+              <img src="/images/installation/tv-setup/happ-phone-send.jpg" alt="Happ на телефоне: выбор серверов для отправки на телевизор" />
+            </Frame>
+          </Step>
+          <Step title="Готово">
+            Подписка и выбранные серверы появятся в Happ на телевизоре.
+
+            <Frame>
+              <img src="/images/installation/tv-setup/happ-tv-result.jpg" alt="Happ на ТВ: список серверов после добавления подписки" />
+            </Frame>
+          </Step>
+        </Steps>
+      </Tab>
+    </Tabs>
   </Step>
   <Step title="Подключитесь">
     Откройте приложение и подключитесь к серверу.

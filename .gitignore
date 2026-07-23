@@ -1,3 +1,4 @@
 .claude/
 _cabinet-audit/
 node_modules/
+.playwright-mcp/
