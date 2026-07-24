@@ -40,6 +40,31 @@ jobs:
       - name: Set custom domain
         run: echo "docs.vispy.net" > site/CNAME
 
+      - name: Neutralize live-assistant widget (unsupported in static export)
+        run: |
+          cat > /tmp/patch.js <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+
+          const snippet = `<style>.z-999{display:none!important}</style><script>(function(){function isSocket(u){return typeof u==="string"&&u.indexOf("/socket.io/")!==-1}var of=window.fetch;window.fetch=function(input,init){var u=typeof input==="string"?input:(input&&input.url)||"";if(isSocket(u))return Promise.reject(new Error("socket.io disabled in static export"));return of.apply(this,arguments)};var oo=XMLHttpRequest.prototype.open;XMLHttpRequest.prototype.open=function(m,u){this.__blocked=isSocket(u);return oo.apply(this,arguments)};var os=XMLHttpRequest.prototype.send;XMLHttpRequest.prototype.send=function(){if(this.__blocked){var x=this;setTimeout(function(){x.dispatchEvent(new Event("error"))},0);return}return os.apply(this,arguments)};var OW=window.WebSocket;window.WebSocket=function(u){if(isSocket(u)){var stub={close:function(){},send:function(){},addEventListener:function(){},removeEventListener:function(){}};setTimeout(function(){if(stub.onerror)stub.onerror(new Event("error"))},0);return stub}return new OW(u)}})();</script>`;
+
+          function walk(dir) {
+            for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+              const p = path.join(dir, entry.name);
+              if (entry.isDirectory()) walk(p);
+              else if (entry.name.endsWith('.html')) {
+                const html = fs.readFileSync(p, 'utf-8');
+                if (html.includes('<head>')) {
+                  fs.writeFileSync(p, html.replace('<head>', '<head>' + snippet));
+                }
+              }
+            }
+          }
+
+          walk('site');
+          NODE
+          node /tmp/patch.js
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
