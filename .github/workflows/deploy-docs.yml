@@ -37,6 +37,9 @@ jobs:
       - name: Add .nojekyll
         run: touch site/.nojekyll
 
+      - name: Set custom domain
+        run: echo "docs.vispy.net" > site/CNAME
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
