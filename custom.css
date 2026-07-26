@@ -99,12 +99,11 @@ img.nav-logo {
   border-color: rgba(196, 190, 240, 0.12) !important;
 }
 
-/* ===== Алерты (Note/Tip/Warning/Info) и аккордеон — по бренд-буку это
-   "мелкие интерактивные элементы", radius-sm (10px), а не Mintlify-дефолтный
-   rounded-xl/2xl. Цвета — из семантической палитры §04 вместо родовых
+/* ===== Алерты (Note/Tip/Warning/Info) — по бренд-буку это "мелкие
+   интерактивные элементы", radius-sm (10px), а не Mintlify-дефолтный
+   rounded-2xl. Цвета — из семантической палитры §04 вместо родовых
    Tailwind blue/green/yellow/neutral. */
-.callout,
-.accordion-group {
+.callout {
   border-radius: 10px !important;
 }
 
@@ -145,6 +144,62 @@ img.nav-logo {
 [data-callout-type="danger"] svg,
 [data-callout-type="danger"] > div:last-child {
   color: #ff9999 !important;
+}
+
+/* ===== Аккордеон: у Mintlify пункты "склеены" в один блок с делителями и
+   серым треугольником слева — на реальном сайте (см. FAQ) это отдельные
+   карточки с гэпом 10px, акцентной границей, поверхностью card и круглым
+   шевроном справа. Пересобираем структуру под этот паттерн. */
+.accordion-group {
+  border: none !important;
+  background: transparent !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+.accordion-group > details {
+  border: 1px solid rgba(196, 190, 240, 0.12) !important;
+  border-radius: 10px !important;
+  background-color: rgba(26, 23, 40, 0.9) !important;
+  margin: 0 !important;
+}
+.accordion-group [class*="hover:bg-gray"] {
+  background-color: transparent !important;
+}
+.accordion-group summary:hover {
+  background-color: rgba(196, 190, 240, 0.06) !important;
+}
+.accordion-group [data-component-part="accordion-title"] {
+  color: #e8e4f8 !important;
+}
+/* Круглый шеврон справа вместо серого треугольника слева */
+.accordion-group [data-component-part="accordion-caret-right"] {
+  order: 2;
+  margin-left: auto !important;
+  margin-right: 0 !important;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: rgba(196, 190, 240, 0.1) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+.accordion-group [data-component-part="accordion-caret-right"] svg {
+  display: none !important;
+}
+.accordion-group [data-component-part="accordion-caret-right"]::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid #c4bef0;
+  border-bottom: 2px solid #c4bef0;
+  transform: rotate(45deg) translate(-2px, -2px);
+  transition: transform 0.2s ease;
+}
+.accordion-group summary[aria-expanded="true"] [data-component-part="accordion-caret-right"]::before {
+  transform: rotate(-135deg) translate(0, 0);
 }
 
 /* ===== Строка поиска: серый текст-подсказка и серая рамка вместо акцентных */
