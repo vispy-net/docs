@@ -1,0 +1,170 @@
+/* Mintlify красит текст основной кнопки шапки в белый поверх акцентного (светлого)
+   фона — на лавандовом #c4bef0 это нечитаемо. Бренд-бук vispy.net требует обратной
+   пары: акцентный фон + тёмный текст (см. §04, контраст bg-на-accent ~11.9:1). */
+a:has(> .bg-primary-dark) .text-white,
+a:has(> .bg-primary-dark) .text-white\/90 {
+  color: #13111f;
+}
+
+/* Бренд-бук: вес шрифта "Основной" кнопки — 700. Mintlify рисует её font-medium (500). */
+a:has(> .bg-primary-dark) {
+  font-weight: 700;
+}
+
+/* Mintlify фиксирует высоту логотипа в шапке на 28px (класс h-7). На реальном
+   vispy.net иконка занимает 34px — со стандартной высотой лого выглядит заметно
+   мельче сайта. Поднимаем до того же размера. */
+img.nav-logo {
+  height: 34px;
+}
+
+/* Бренд-бук требует radius-full (50px) для всех кликабельных кнопок — Mintlify
+   по умолчанию рисует кнопку шапки с rounded-xl (12px). Карточки на главной уже
+   на rounded-2xl (16px) = radius-md из бренд-бука, их не трогаем. */
+.bg-primary-dark {
+  border-radius: 50px;
+}
+
+/* ===== Текст: у Mintlify весь UI-текст на чистой нейтральной серой шкале
+   (--gray-*, chrome-элементы) и Tailwind Typography (--tw-prose-invert-*,
+   контент страниц) — обе системы игнорируют наши цвета. Бренд-бук требует
+   серо-ЛАВАНДОВЫЙ текст (§04): text #e8e4f8, text-2 #9b96b8, text-3 #8a86ac.
+   Переопределяем напрямую, т.к. сами CSS-переменные не читаются в рантайме —
+   у Tailwind v4 цвет запечён в утилите на этапе сборки. */
+
+/* Заголовки страниц и другие самые светлые серые ("dark:text-gray-50/100/200") → text */
+[class~="dark:text-gray-50"],
+[class~="dark:text-gray-100"],
+[class~="dark:text-gray-200"] {
+  color: #e8e4f8 !important;
+}
+
+/* Основной текст описаний ("dark:text-gray-300/400") → text-2 */
+[class~="dark:text-gray-300"],
+[class~="dark:text-gray-400"] {
+  color: #9b96b8 !important;
+}
+
+/* Приглушённый текст (хлебные крошки, второстепенная навигация, плейсхолдеры) → text-3 */
+[class~="dark:text-gray-500"],
+[class~="dark:text-gray-600"],
+[class~="dark:text-gray-700"] {
+  color: #8a86ac !important;
+}
+
+/* Контент страниц (markdown/prose) — та же тройка тонов + акцент на ссылках/коде */
+.prose p {
+  color: #9b96b8 !important;
+}
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: #e8e4f8 !important;
+}
+.prose strong {
+  color: #e8e4f8 !important;
+}
+.prose a {
+  color: #c4bef0 !important;
+}
+.prose li::marker {
+  color: #8a86ac !important;
+}
+/* Инлайн-код — приглушённый акцент-2, зарезервированный бренд-буком под
+   "терминальные команды"; сами блоки кода — тёмная терминальная поверхность */
+.prose code:not(pre code) {
+  color: #a89ee0 !important;
+}
+.prose pre {
+  background-color: #0d0b18 !important;
+}
+.prose pre code {
+  color: #e8e4f8 !important;
+}
+.prose hr,
+.prose th,
+.prose td {
+  border-color: rgba(196, 190, 240, 0.12) !important;
+}
+
+/* ===== Границы: бренд-бук прямо запрещает серые границы — все границы
+   должны быть производными акцента через прозрачность (rgba(196,190,240,…)),
+   а не gray/white. Карточки, аккордеон и мелкие разделители используют
+   нейтральные Tailwind-оттенки — заменяем на акцентную границу. */
+[class~="border-gray-950/10"],
+[class~="dark:border-white/10"],
+[class~="dark:border-gray-800/50"],
+[class~="dark:border-gray-300/[0.06]"],
+[class~="border-gray-500/5"] {
+  border-color: rgba(196, 190, 240, 0.12) !important;
+}
+
+/* ===== Алерты (Note/Tip/Warning/Info) и аккордеон — по бренд-буку это
+   "мелкие интерактивные элементы", radius-sm (10px), а не Mintlify-дефолтный
+   rounded-xl/2xl. Цвета — из семантической палитры §04 вместо родовых
+   Tailwind blue/green/yellow/neutral. */
+.callout,
+.accordion-group {
+  border-radius: 10px !important;
+}
+
+[data-callout-type="tip"] {
+  background-color: rgba(74, 222, 128, 0.12) !important;
+  border-color: rgba(74, 222, 128, 0.35) !important;
+}
+[data-callout-type="tip"] svg,
+[data-callout-type="tip"] > div:last-child {
+  color: #8fe0af !important;
+}
+
+[data-callout-type="warning"] {
+  background-color: rgba(245, 158, 11, 0.12) !important;
+  border-color: rgba(245, 158, 11, 0.35) !important;
+}
+[data-callout-type="warning"] svg,
+[data-callout-type="warning"] > div:last-child {
+  color: #f59e0b !important;
+}
+
+[data-callout-type="note"],
+[data-callout-type="info"] {
+  background-color: rgba(168, 158, 224, 0.12) !important;
+  border-color: rgba(168, 158, 224, 0.35) !important;
+}
+[data-callout-type="note"] svg,
+[data-callout-type="note"] > div:last-child,
+[data-callout-type="info"] svg,
+[data-callout-type="info"] > div:last-child {
+  color: #a89ee0 !important;
+}
+
+[data-callout-type="danger"] {
+  background-color: rgba(255, 107, 107, 0.12) !important;
+  border-color: rgba(255, 107, 107, 0.35) !important;
+}
+[data-callout-type="danger"] svg,
+[data-callout-type="danger"] > div:last-child {
+  color: #ff9999 !important;
+}
+
+/* ===== Строка поиска: серый текст-подсказка и серая рамка вместо акцентных */
+[class~="dark:text-white/50"] {
+  color: rgba(155, 150, 184, 0.85) !important;
+}
+[class~="dark:ring-gray-600/30"] {
+  --tw-ring-color: rgba(196, 190, 240, 0.16) !important;
+}
+[class~="dark:hover:ring-gray-500/30"]:hover {
+  --tw-ring-color: rgba(196, 190, 240, 0.28) !important;
+}
+[class~="dark:ring-white/[0.06]"],
+[class~="ring-gray-950/[0.06]"] {
+  --tw-ring-color: rgba(196, 190, 240, 0.12) !important;
+}
+
+/* Поиск не работает в статическом экспорте (нет бэкенда Mintlify для запросов,
+   как и с live-ассистентом) — прячем кнопку поиска из шапки, чтобы не
+   показывать нерабочую функцию. */
+#search-bar-entry {
+  display: none !important;
+}

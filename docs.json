@@ -4,9 +4,22 @@
   "name": "vispy.net",
   "description": "База знаний vispy.net — подключение, настройка и решение проблем",
   "colors": {
-    "primary": "#8b7fd4",
+    "primary": "#c4bef0",
     "light": "#c4bef0",
-    "dark": "#6f63b8"
+    "dark": "#c4bef0"
+  },
+  "background": {
+    "color": {
+      "light": "#13111f",
+      "dark": "#13111f"
+    }
+  },
+  "appearance": {
+    "default": "dark",
+    "strict": true
+  },
+  "fonts": {
+    "family": "Golos Text"
   },
   "favicon": "/favicon.ico",
   "logo": {
