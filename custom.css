@@ -158,7 +158,12 @@ img.nav-logo {
   gap: 10px !important;
 }
 .accordion-group > details {
-  border: 1px solid rgba(196, 190, 240, 0.12) !important;
+  /* box-shadow вместо border: у Mintlify для не-последних пунктов группы
+     border-top-width где-то сбрасывается в 0 (динамический инлайн-стиль
+     аккордеона), из-за чего верхняя грань первых карточек оставалась без
+     рамки. box-shadow тот механизм не трогает и даёт ровный контур на всех */
+  border: none !important;
+  box-shadow: inset 0 0 0 1px rgba(196, 190, 240, 0.12) !important;
   border-radius: 10px !important;
   background-color: rgba(26, 23, 40, 0.9) !important;
   margin: 0 !important;
