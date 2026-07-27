@@ -168,6 +168,16 @@ img.nav-logo {
   background-color: rgba(26, 23, 40, 0.9) !important;
   margin: 0 !important;
 }
+/* divide-y у Mintlify всё равно дорисовывает непрозрачную нижнюю грань
+   (цвет — унаследованный текстовый, не наш акцент) всем пунктам, кроме
+   последнего — из-за неё низ первых трёх карточек выглядел ярче. Точечно
+   гасим именно её, специфичность selector'а поднята через [class]. */
+.accordion-group[class] > details[class] {
+  border-bottom: none !important;
+  border-bottom-style: none !important;
+  border-bottom-width: 0 !important;
+  border-bottom-color: transparent !important;
+}
 .accordion-group [class*="hover:bg-gray"] {
   background-color: transparent !important;
 }
@@ -227,4 +237,50 @@ img.nav-logo {
    показывать нерабочую функцию. */
 #search-bar-entry {
   display: none !important;
+}
+
+/* ===== §09 "Боковое меню": Mintlify рисует сайдбар шириной 288px (w-[18rem]),
+   без правой границы. Бренд-бук требует фикс. ширину 272px и акцентную границу
+   справа вместо серой/пустой (градиент сверху пробовали — на практике смотрится
+   грязным пятном поверх первой группы, отказались). */
+#sidebar {
+  width: 272px !important;
+  border-right: 1px solid rgba(196, 190, 240, 0.12);
+}
+
+/* Заголовки групп: бренд-бук требует капс и уменьшенный кегль 0.66rem —
+   Mintlify рисует их обычным регистром на кегле текста сайдбара (унаследованные
+   14px). Разрядку берём заметно меньше указанной в бренд-буке (0.14em) — на
+   кириллице это читалось как рваный текст с дырами между буквами. */
+.sidebar-group-header {
+  font-size: 0.66rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Пункты меню: кегль 0.83rem и радиус 8px по бренд-буку вместо унаследованных
+   14px / rounded-xl (12px) у Mintlify. Переход 0.2s — по спеку ховера. */
+#navigation-items a {
+  font-size: 0.83rem !important;
+  border-radius: 8px !important;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Ховер пункта меню: Mintlify красит в серую шкалу (gray-200/5 фон,
+   gray-300 текст) — бренд-бук требует акцентный фон rgba(...,.05) и
+   основной текстовый тон text вместо второстепенного. */
+[class~="dark:hover:bg-gray-200/5"]:hover {
+  background-color: rgba(196, 190, 240, 0.05) !important;
+}
+[class~="dark:hover:text-gray-300"]:hover {
+  color: #e8e4f8 !important;
+}
+
+/* Активный пункт меню: бренд-бук указывает вес 600, но вместе со встроенным
+   text-shadow-приёмом Mintlify (двойная обводка currentColor) это выглядело
+   слишком жирно — оставляем text-shadow один как более лёгкий вариант акцента,
+   без явного увеличения font-weight. */
+li[data-active-nav-item="true"] > a {
+  font-weight: 500 !important;
 }
